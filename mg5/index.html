@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<style>
+th,td {
+  padding: 5px;
+}
+</style>
+<body>
+
+<h2>Tugas Mg 5 Pemweb</h2>
+
+
+<form action=""> 
+  <select name="prodi" onchange="show(this.value)">
+    <option value=""> Pilih Prodi </option>
+    <option value="IF"> Teknik Informatika </option>
+    <option value="EL"> Teknik Elektro </option>
+    <option value="ME"> Teknik Mesin </option>
+    <option value="TG"> Teknik Geofisika </option>
+    <option value="GL"> Teknik Geologi </option>
+  </select>
+</form>
+<br>
+<div id="txtHint">Daftar mahasiswa akan ditampilkan di sini</div>
+
+<script>
+function show(str) {
+  if (str == "") {
+    document.getElementById("txtHint").innerHTML = "";
+    return;
+  }
+  const xhttp = new XMLHttpRequest();
+  xhttp.onload = function() {
+    document.getElementById("txtHint").innerHTML = this.responseText;
+  }
+  xhttp.open("GET", "getMhs.php?q="+str);
+  xhttp.send();
+}
+</script>
+</body>
+
+</html>
